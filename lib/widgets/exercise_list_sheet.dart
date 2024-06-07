@@ -69,10 +69,10 @@ class _ExerciseListSheetState extends State<ExerciseListSheet> {
                         const Spacer(),
                         TextButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
-
                             provider
                                 .refreshExercies(provider.selectedExercises);
+                            provider.notifyListeners();
+                            Navigator.of(context).pop();
                           },
                           child: const Text('Add',
                               style: TextStyle(

@@ -304,6 +304,12 @@ class _ExerciseDetailSheetState extends State<ExerciseDetailSheet> {
                                   color: Colors.grey.withOpacity(.2),
                                 ),
                                 ...exercise.setList.map((set) {
+                                  var indexOfExercise =
+                                      provider.finalExercises.indexOf(exercise);
+                                  var indexOfSet = provider
+                                      .finalExercises[indexOfExercise].setList
+                                      .indexOf(set);
+
                                   return Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Row(
@@ -334,6 +340,15 @@ class _ExerciseDetailSheetState extends State<ExerciseDetailSheet> {
                                                     child: TextFormField(
                                                       initialValue:
                                                           '${set.weight}',
+                                                      onChanged: (value) {
+                                                        provider
+                                                            .finalExercises[
+                                                                indexOfExercise]
+                                                            .setList[indexOfSet]
+                                                            .weight = value;
+                                                        provider
+                                                            .notifyListeners();
+                                                      },
                                                       keyboardType:
                                                           TextInputType.number,
                                                       style: const TextStyle(
@@ -374,6 +389,15 @@ class _ExerciseDetailSheetState extends State<ExerciseDetailSheet> {
                                                 children: [
                                                   Expanded(
                                                     child: TextFormField(
+                                                      onChanged: (value) {
+                                                        provider
+                                                            .finalExercises[
+                                                                indexOfExercise]
+                                                            .setList[indexOfSet]
+                                                            .reps = value;
+                                                        provider
+                                                            .notifyListeners();
+                                                      },
                                                       style: const TextStyle(
                                                           fontSize: 14,
                                                           fontWeight:
